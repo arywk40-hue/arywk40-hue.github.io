@@ -12,4 +12,4 @@ Then open http://localhost:8000.
 
 To publish on GitHub Pages, push this folder to a repo named `arywk40-hue.github.io`, then turn on Pages under Settings → Pages (deploy from branch `main`, folder `/`).
 
-To edit content, change the text in `index.html`; each section is marked with an HTML comment.
+To add or edit projects, achievements, experience or skills, change `data.js`. Page text such as the intro and About section is in `index.html`.

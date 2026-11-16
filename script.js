@@ -1,106 +1,129 @@
 (() => {
+  const data = window.PORTFOLIO;
   const root = document.documentElement;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (sel, el = document) => el.querySelector(sel);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-  // Theme toggle (remembers the choice when storage is available)
-  const isDark = () => root.dataset.theme
-    ? root.dataset.theme === 'dark'
+  const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark'
     : window.matchMedia('(prefers-color-scheme: dark)').matches;
-  document.querySelector('.theme-toggle').addEventListener('click', () => {
+  $('.theme-toggle').addEventListener('click', () => {
     root.dataset.theme = isDark() ? 'light' : 'dark';
     try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
-    drawWeave(performance.now());
   });
 
-  // Rotating focus line
-  const lines = [
-    'edge ML on ESP32 sensor nodes',
-    'agents that explain but never overstep',
-    'smart contracts on Stellar and Ethereum',
-    'research that survives FDR control',
-  ];
-  const rot = document.querySelector('.rot-text');
-  let i = 0;
+  const roles = ['AI / ML developer', 'agent builder', 'Web3 developer', 'quant researcher', 'open-source contributor', 'hackathon builder'];
+  const role = $('.role');
   if (!reduced) {
+    let i = 0;
     setInterval(() => {
-      rot.style.opacity = 0;
-      setTimeout(() => { i = (i + 1) % lines.length; rot.textContent = lines[i]; rot.style.opacity = 1; }, 300);
-    }, 3200);
+      role.classList.add('out');
+      setTimeout(() => { i = (i + 1) % roles.length; role.textContent = roles[i]; role.classList.remove('out'); }, 250);
+    }, 2600);
   }
 
-  // Woven thread background
-  const canvas = document.querySelector('.weave');
-  const ctx = canvas.getContext('2d');
-  let w = 0, h = 0;
-  const resize = () => {
-    const r = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = r.width; h = r.height;
-    canvas.width = w * dpr; canvas.height = h * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  $('[data-count="projects"]').textContent = data.projects.length;
+
+  const icon = id => ({
+    ai: '<path d="M12 3a4 4 0 0 0-4 4v1a4 4 0 0 0-2 7.5V17a4 4 0 0 0 6 3.5A4 4 0 0 0 18 17v-1.5A4 4 0 0 0 16 8V7a4 4 0 0 0-4-4zM12 3v17.5"/>',
+    agents: '<rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6"/>',
+    web3: '<path d="M12 2 4 6.5v11L12 22l8-4.5v-11zM4 6.5l8 4.5 8-4.5M12 11v11"/>',
+    quant: '<path d="M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-3M20 16V6"/>',
+    systems: '<rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/>',
+    web: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/>',
+  }[id]);
+  const card = p => `
+    <article class="card${p.featured ? ' featured' : ''}" data-dept="${p.dept}" data-text="${esc((p.title + ' ' + p.desc + ' ' + p.tags.join(' ')).toLowerCase())}">
+      <div class="card-top">
+        ${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : '<span></span>'}
+        ${p.featured ? '<span class="star" title="Featured">Featured</span>' : ''}
+      </div>
+      <h4>${esc(p.title)}</h4>
+      <p>${esc(p.desc)}</p>
+      <ul class="tags">${p.tags.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+      ${p.link ? `<a class="card-link" href="${p.link}" target="_blank" rel="noopener">View code <span aria-hidden="true">↗</span></a>` : '<span class="card-link muted">Code not public</span>'}
+    </article>`;
+
+  const deptWrap = $('.departments');
+  deptWrap.innerHTML = data.departments.map(d => {
+    const items = data.projects.filter(p => p.dept === d.id).sort((a, b) => (b.featured || 0) - (a.featured || 0));
+    return `
+      <section class="dept" data-dept="${d.id}" style="--c:${d.color}" aria-labelledby="dept-${d.id}">
+        <header class="dept-head">
+          <span class="dept-icon"><svg viewBox="0 0 24 24" aria-hidden="true">${icon(d.id)}</svg></span>
+          <h3 id="dept-${d.id}">${esc(d.name)}</h3>
+          <span class="count">${items.length} projects</span>
+        </header>
+        <div class="cards">${items.map(card).join('')}</div>
+      </section>`;
+  }).join('');
+
+  const tabs = $('.tabs');
+  tabs.innerHTML = [{ id: 'all', short: 'All', n: data.projects.length },
+    ...data.departments.map(d => ({ ...d, n: data.projects.filter(p => p.dept === d.id).length }))]
+    .map((t, i) => `<button type="button" role="tab" class="tab${i ? '' : ' is-on'}" aria-selected="${!i}" data-tab="${t.id}">${esc(t.short)} <span>${t.n}</span></button>`).join('');
+  let current = 'all';
+  const input = $('.search input');
+  const apply = () => {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    document.querySelectorAll('.dept').forEach(sec => {
+      const inTab = current === 'all' || sec.dataset.dept === current;
+      let any = 0;
+      sec.querySelectorAll('.card').forEach(c => {
+        const ok = inTab && (!q || c.dataset.text.includes(q));
+        c.hidden = !ok; if (ok) any++;
+      });
+      sec.hidden = !any; shown += any;
+    });
+    $('.empty').hidden = shown > 0;
   };
-  const color = name => getComputedStyle(root).getPropertyValue(name).trim();
-  function drawWeave(t) {
-    ctx.clearRect(0, 0, w, h);
-    const x0 = w * (w < 720 ? 0.62 : 0.45);
-    const cols = [color('--a1'), color('--a2'), color('--a3')];
-    const phase = t / 2600;
-    const fade = x => Math.min(1, Math.max(0, (x - x0) / (w * 0.25)));
-    ctx.lineWidth = 1.3;
-    for (let r = 0; r < 11; r++) {
-      const base = (h / 11) * (r + 0.5);
-      ctx.beginPath();
-      for (let x = x0; x <= w; x += 8) {
-        const y = base + 9 * Math.sin((x - x0) / 46 + r * 0.9 + phase);
-        x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      const g = ctx.createLinearGradient(x0, 0, w, 0);
-      g.addColorStop(0, 'transparent'); g.addColorStop(0.35, cols[r % 3]); g.addColorStop(1, cols[(r + 1) % 3]);
-      ctx.strokeStyle = g; ctx.globalAlpha = 0.45; ctx.stroke();
-    }
-    for (let c = 0; c < 16; c++) {
-      const base = x0 + ((w - x0) / 16) * (c + 0.5);
-      ctx.beginPath();
-      for (let y = 0; y <= h; y += 8) {
-        const x = base + 7 * Math.sin(y / 38 + c * 1.1 - phase);
-        y === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.strokeStyle = cols[(c + 2) % 3]; ctx.globalAlpha = 0.3 * fade(base); ctx.stroke();
-    }
-    ctx.globalAlpha = 1;
-  }
-  resize();
-  window.addEventListener('resize', () => { resize(); drawWeave(performance.now()); });
-  if (reduced) {
-    drawWeave(0);
-  } else {
-    let visible = true;
-    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(canvas);
-    const loop = t => { if (visible) drawWeave(t); requestAnimationFrame(loop); };
-    requestAnimationFrame(loop);
-  }
-
-  // Pipeline dot travel distance matches each list's height
-  document.querySelectorAll('.pipeline').forEach(p => {
-    p.style.setProperty('--travel', `${p.offsetHeight - 64}px`);
+  tabs.addEventListener('click', e => {
+    const b = e.target.closest('.tab'); if (!b) return;
+    current = b.dataset.tab;
+    tabs.querySelectorAll('.tab').forEach(t => { const on = t === b; t.classList.toggle('is-on', on); t.setAttribute('aria-selected', on); });
+    apply();
   });
+  input.addEventListener('input', apply);
 
-  // Project filters
-  const chips = document.querySelectorAll('.chip');
-  const cards = document.querySelectorAll('.card');
-  chips.forEach(chip => chip.addEventListener('click', () => {
-    const f = chip.dataset.filter;
-    chips.forEach(c => { const on = c === chip; c.classList.toggle('is-on', on); c.setAttribute('aria-pressed', on); });
-    cards.forEach(card => { card.hidden = f !== 'all' && !card.dataset.cat.split(' ').includes(f); });
-  }));
+  $('.timeline').innerHTML = data.experience.map(x => `
+    <li>
+      <span class="node" aria-hidden="true"></span>
+      <div>
+        ${x.when ? `<span class="when">${esc(x.when)}</span>` : ''}
+        <h4>${esc(x.title)}</h4>
+        <p class="org">${esc(x.org)}</p>
+        ${x.text ? `<p class="muted">${esc(x.text)}</p>` : ''}
+      </div>
+    </li>`).join('');
 
-  // Reveal on scroll
+  const tier = p => p === '1st' ? 'gold' : p === '2nd' ? 'silver' : p === '3rd' ? 'bronze' : '';
+  $('.awards').innerHTML = data.achievements.map(a => `
+    <article class="award ${tier(a.place)}">
+      <span class="place">${esc(a.place)}</span>
+      <h4>${esc(a.title)}</h4>
+      <p class="muted">${esc(a.note)}</p>
+    </article>`).join('');
+
+  $('.skills').innerHTML = data.skills.map(s => `
+    <div class="skill">
+      <h4>${esc(s.group)}</h4>
+      <ul>${s.items.map(i => `<li>${esc(i)}</li>`).join('')}</ul>
+    </div>`).join('');
+
   if (!reduced && 'IntersectionObserver' in window) {
-    const targets = document.querySelectorAll('.section-head, .focus-card, .feature, .card, .wins li, .os > *, .tools div');
-    targets.forEach(el => el.classList.add('reveal'));
-    const io = new IntersectionObserver(entries => entries.forEach(e => {
+    const els = document.querySelectorAll('.section-head, .about > *');
+    els.forEach(el => el.classList.add('reveal'));
+    const io = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    }), { rootMargin: '0px 0px -8% 0px' });
-    targets.forEach(el => io.observe(el));
+    }), { rootMargin: '0px 0px -6% 0px' });
+    els.forEach(el => io.observe(el));
   }
+
+  // Highlight the nav link of the section in the middle of the viewport
+  const links = [...document.querySelectorAll('.nav nav a')];
+  const navObs = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  links.forEach(a => { const s = document.querySelector(a.getAttribute('href')); if (s) navObs.observe(s); });
 })();
