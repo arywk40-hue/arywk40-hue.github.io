@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ariyan Bhakat · WEAVER</title>
+  <meta name="description" content="Ariyan Bhakat, B.Tech Data Science & AI at IIT Mandi. Edge ML, agentic AI, Web3 and quant research projects.">
+  <meta property="og:title" content="Ariyan Bhakat · WEAVER">
+  <meta property="og:description" content="Edge ML, agentic AI, Web3 and quant research, from paper to model to a system that runs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="Back to top">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 10c6 0 6 12 12 12s6-12 12-12M4 22c6 0 6-12 12-12s6 12 12 12"/></svg>
+      <span>WEAVER</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#wins">Wins</a>
+      <a href="#open-source">Open source</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Switch colour theme">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+    </button>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <canvas class="weave" aria-hidden="true"></canvas>
+      <div class="hero-inner">
+        <p class="eyebrow">// WEAVER · IIT MANDI</p>
+        <h1>Ariyan Bhakat</h1>
+        <p class="lede">B.Tech Data Science &amp; AI, 2025–2029. I build where AI meets real systems: sensor nodes that forecast at the edge, agents that can explain but not overstep, and research that survives statistical scrutiny.</p>
+        <p class="rotator" aria-live="polite"><span class="prompt">&gt;</span> <span class="rot-text">edge ML on ESP32 sensor nodes</span><span class="caret" aria-hidden="true"></span></p>
+        <div class="cta">
+          <a class="btn primary" href="#work">See the work</a>
+          <a class="btn" href="https://github.com/arywk40-hue" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="mailto:ARYWK40@gmail.com">Email me</a>
+        </div>
+        <p class="status"><span class="dot" aria-hidden="true"></span>Open to research internships and open-source collaboration</p>
+      </div>
+    </section>
+
+    <!-- Numbers -->
+    <section class="stats" aria-label="At a glance">
+      <div><strong>5</strong><span>hackathon podium and prize finishes</span></div>
+      <div><strong>14</strong><span>pull requests merged into other people's repos</span></div>
+      <div><strong>402</strong><span>tests in INDRA, the edge-forecasting system</span></div>
+      <div><strong>0.955</strong><span>faithfulness on Study Companion's pilot evaluation</span></div>
+    </section>
+
+    <!-- Focus -->
+    <section class="section" aria-labelledby="focus-title">
+      <div class="section-head">
+        <p class="kicker">Focus</p>
+        <h2 id="focus-title">Four threads, one habit: paper → model → system → something that runs</h2>
+      </div>
+      <div class="focus">
+        <article class="focus-card" style="--c: var(--a1)">
+          <span class="num">01</span>
+          <h3>AI &amp; agentic systems</h3>
+          <p>LLM tools with hard boundaries: MCP, LangGraph, RAG with verification, computer vision.</p>
+        </article>
+        <article class="focus-card" style="--c: var(--a2)">
+          <span class="num">02</span>
+          <h3>Web3 &amp; blockchain</h3>
+          <p>Soroban contracts in Rust on Stellar, Solidity on Ethereum, on-chain audit trails.</p>
+        </article>
+        <article class="focus-card" style="--c: var(--a3)">
+          <span class="num">03</span>
+          <h3>Quant &amp; research</h3>
+          <p>Feature mining with FDR control, honest backtests, models compared on held-out data.</p>
+        </article>
+        <article class="focus-card" style="--c: var(--a4)">
+          <span class="num">04</span>
+          <h3>Systems &amp; embedded</h3>
+          <p>ESP32 firmware, sensor fusion, C++ inference within a few megabytes, robotics.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Featured -->
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="section-head">
+        <p class="kicker">Featured work</p>
+        <h2 id="work-title">Three projects, measured</h2>
+        <p class="sub">Every number below comes from the project's own repository. Where something isn't finished, it says so.</p>
+      </div>
+
+      <article class="feature" style="--c: var(--a1)">
+        <div class="feature-text">
+          <p class="tag">Edge ML · team of six</p>
+          <h3>INDRA</h3>
+          <p class="pitch">Weather and hazard forecasting that runs on the sensor node itself, for cloudburst and snowstorm risk in the Himalayas.</p>
+          <dl class="metrics">
+            <div><dt>1.14 °C</dt><dd>six-hour forecast MAE on 35,520 observations</dd></div>
+            <div><dt>50–83%</dt><dd>skill over a persistence forecast</dd></div>
+            <div><dt>2.96 MB</dt><dd>firmware and model on an ESP32-S3</dd></div>
+            <div><dt>402</dt><dd>tests passing in CI</dd></div>
+          </dl>
+          <p class="state"><b>Status:</b> validated offline across 587 stations. A field pilot around Mandi and a teammate's LoRa mesh are next. Mentored by Dr. Kaushik Halder.</p>
+          <p class="stack">C++17 · ESP32-S3 · XGBoost · FastAPI · React</p>
+          <a class="link" href="https://github.com/arywk40-hue/indra" target="_blank" rel="noopener">View repository →</a>
+        </div>
+        <ol class="pipeline" aria-label="INDRA pipeline">
+          <li>BME280 and PMS7003 sensor nodes</li>
+          <li>C++ forecaster on the ESP32-S3</li>
+          <li>ESP-NOW / LoRa mesh, HMAC-signed frames</li>
+          <li>Gateway with FastAPI ingestion</li>
+          <li>Dashboard with a six-hour outlook</li>
+        </ol>
+      </article>
+
+      <article class="feature" style="--c: var(--a2)">
+        <div class="feature-text">
+          <p class="tag">Agentic quant · solo</p>
+          <h3>VegaGuard</h3>
+          <p class="pitch">A paper-only options agent built on one rule: the model can explain a trade, but it cannot authorize one.</p>
+          <dl class="metrics">
+            <div><dt>186</dt><dd>tests passing</dd></div>
+            <div><dt>5 min</dt><dd>approval window, bound to the exact contracts</dd></div>
+            <div><dt>15 · 30 · 60</dt><dd>minute repricing of trades the agent rejected</dd></div>
+            <div><dt>0</dt><dd>orders the language model can place</dd></div>
+          </dl>
+          <p class="state"><b>Status:</b> one full paper-trade lifecycle completed. A multi-week paper run and a selected-versus-rejected comparison are next. Built for the Alpaca AI Trading Agents Hackathon.</p>
+          <p class="stack">Python · Alpaca API · MCP · FastAPI · SQLite</p>
+          <a class="link" href="https://github.com/arywk40-hue/vegaguard" target="_blank" rel="noopener">View repository →</a>
+        </div>
+        <ol class="pipeline" aria-label="VegaGuard pipeline">
+          <li>Alpaca market data</li>
+          <li>Scanner: five signals, threshold 70</li>
+          <li>Defined-risk debit-spread builder</li>
+          <li>Risk critic: deterministic gates</li>
+          <li>Exact-plan paper order through Alpaca MCP</li>
+        </ol>
+      </article>
+
+      <article class="feature" style="--c: var(--a3)">
+        <div class="feature-text">
+          <p class="tag">Multimodal RAG · team of four</p>
+          <h3>Study Companion</h3>
+          <p class="pitch">A course tutor that checks every claim with a second model and cites the exact PDF region, slide or video second it came from.</p>
+          <dl class="metrics">
+            <div><dt>0.955</dt><dd>faithfulness on a 22-question pilot</dd></div>
+            <div><dt>0.983</dt><dd>context recall on the same pilot</dd></div>
+            <div><dt>3</dt><dd>source types: PDFs, slides, lecture video</dd></div>
+            <div><dt>2</dt><dd>model families: one drafts, one verifies</dd></div>
+          </dl>
+          <p class="state"><b>Status:</b> the pilot is non-final. A 100-question benchmark with an independent judge is next.</p>
+          <p class="stack">Python · FastAPI · React · Qwen · Gemma · BGE-M3</p>
+          <a class="link" href="https://github.com/arywk40-hue/Multimodal-2026" target="_blank" rel="noopener">View repository →</a>
+        </div>
+        <ol class="pipeline" aria-label="Study Companion pipeline">
+          <li>PDFs, slide decks, lecture videos</li>
+          <li>Ingest and index: BGE-M3 plus reranker</li>
+          <li>Tutor drafts the answer (Qwen)</li>
+          <li>Verifier checks each claim (Gemma)</li>
+          <li>Answer cited to the page or video second</li>
+        </ol>
+      </article>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="section-head">
+        <p class="kicker">Everything else</p>
+        <h2 id="projects-title">More projects</h2>
+      </div>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button type="button" class="chip is-on" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-filter="ai" aria-pressed="false">AI / ML</button>
+        <button type="button" class="chip" data-filter="agents" aria-pressed="false">Agents</button>
+        <button type="button" class="chip" data-filter="web3" aria-pressed="false">Web3</button>
+        <button type="button" class="chip" data-filter="hackathon" aria-pressed="false">Hackathons</button>
+        <button type="button" class="chip" data-filter="hardware" aria-pressed="false">Hardware</button>
+      </div>
+      <div class="grid">
+        <a class="card" data-cat="agents web3" href="https://github.com/arywk40-hue/welliptic" target="_blank" rel="noopener">
+          <span class="badge">2nd runner-up · Xpecto '26</span>
+          <h3>LexAudit</h3>
+          <p>AI contract review with a human approval gate and an on-chain audit trail.</p>
+          <span class="meta">LangGraph · MCP · Weilchain</span>
+        </a>
+        <a class="card" data-cat="agents" href="https://github.com/arywk40-hue/ServiceSetu" target="_blank" rel="noopener">
+          <h3>ServiceSetu</h3>
+          <p>Approval-gated local-service booking with Fetch.ai agents and test-mode payments. 346 tests.</p>
+          <span class="meta">uAgents · ASI:One · Python</span>
+        </a>
+        <a class="card" data-cat="web3" href="https://github.com/arywk40-hue/Stellar" target="_blank" rel="noopener">
+          <h3>GeoLedger</h3>
+          <p>Donations with geolocation and NGO impact evidence, backed by Soroban contracts.</p>
+          <span class="meta">Rust · Soroban · Next.js</span>
+        </a>
+        <a class="card" data-cat="web3" href="https://github.com/arywk40-hue/WEB3" target="_blank" rel="noopener">
+          <span class="badge">1st · Aya Build &amp; Learn</span>
+          <h3>Governance Budget Allocator</h3>
+          <p>Role-based shared budgets as a Soroban smart contract.</p>
+          <span class="meta">Rust · Soroban</span>
+        </a>
+        <a class="card" data-cat="hackathon" href="https://github.com/arywk40-hue/marswalk-navigator" target="_blank" rel="noopener">
+          <h3>Marswalk Navigator</h3>
+          <p>EVA route and hazard planner for astronauts on Mars, NASA Space Apps 2026.</p>
+          <span class="meta">TypeScript · Vitest</span>
+        </a>
+        <a class="card" data-cat="ai" href="https://github.com/arywk40-hue/META-X" target="_blank" rel="noopener">
+          <h3>Meta-X</h3>
+          <p>OpenEnv RL environment for tabular data cleaning with deterministic graders.</p>
+          <span class="meta">Python · OpenEnv · Docker</span>
+        </a>
+        <a class="card" data-cat="ai" href="https://github.com/arywk40-hue/hacktober" target="_blank" rel="noopener">
+          <h3>CiteTutor</h3>
+          <p>Local study helper: Gemma drafts, Qwen verifies, grounded in your PDFs.</p>
+          <span class="meta">Ollama · RAG</span>
+        </a>
+        <a class="card" data-cat="ai" href="https://github.com/arywk40-hue/MQM" target="_blank" rel="noopener">
+          <h3>Mess Queue Management</h3>
+          <p>Computer-vision congestion monitor for the IIT Mandi mess. 7 merged PRs, Robotronics Club.</p>
+          <span class="meta">CV · Streamlit</span>
+        </a>
+        <a class="card" data-cat="ai hackathon" href="https://github.com/arywk40-hue/FEEL-EASE-CHAT-BOT" target="_blank" rel="noopener">
+          <span class="badge">5th · Simplify AI 2025</span>
+          <h3>FeelEase</h3>
+          <p>Support chatbot in English, Hindi and Bengali with text-to-speech.</p>
+          <span class="meta">Streamlit · Gemini</span>
+        </a>
+        <a class="card" data-cat="ai hackathon" href="https://github.com/arywk40-hue/kbg" target="_blank" rel="noopener">
+          <h3>Bone Fracture Classification</h3>
+          <p>12-class X-ray classifier, Kamand Bioengineering Group Hackathon 2025.</p>
+          <span class="meta">PyTorch · CV</span>
+        </a>
+        <a class="card" data-cat="agents" href="https://github.com/arywk40-hue/zynd" target="_blank" rel="noopener">
+          <h3>VentureSwarm</h3>
+          <p>Multi-agent startup-intelligence swarm on the ZyndAI Agent SDK.</p>
+          <span class="meta">Python · multi-agent</span>
+        </a>
+        <a class="card" data-cat="ai" href="https://github.com/arywk40-hue/bias-mirror" target="_blank" rel="noopener">
+          <h3>Bias Mirror</h3>
+          <p>Meeting-equity auditor built on speaker diarization.</p>
+          <span class="meta">FastAPI · speech</span>
+        </a>
+        <a class="card" data-cat="web3" href="https://github.com/arywk40-hue/AYA" target="_blank" rel="noopener">
+          <h3>AuraVerse</h3>
+          <p>NFT marketplace with timed auctions and royalties.</p>
+          <span class="meta">Solidity · Hardhat · React</span>
+        </a>
+        <a class="card" data-cat="hackathon" href="https://github.com/arywk40-hue/RekhaMap" target="_blank" rel="noopener">
+          <h3>RekhaMap</h3>
+          <p>Urban parcel-mapping frontend prototype, Smart India Hackathon 2026.</p>
+          <span class="meta">TypeScript · GIS</span>
+        </a>
+        <a class="card" data-cat="hackathon" href="https://github.com/arywk40-hue/suraksha-yatra" target="_blank" rel="noopener">
+          <h3>Suraksha Yatra</h3>
+          <p>Tourist-safety control room with risk scoring and emergency workflows.</p>
+          <span class="meta">Express · JWT</span>
+        </a>
+        <a class="card" data-cat="hardware" href="https://github.com/arywk40-hue/Three-Musketeers" target="_blank" rel="noopener">
+          <h3>ElderCare Guardian</h3>
+          <p>Wearable for vitals, fall detection and SOS alerts. Team project, v1.0.0-beta.</p>
+          <span class="meta">Kotlin · wearables</span>
+        </a>
+        <a class="card" data-cat="hardware" href="https://github.com/arywk40-hue/F-D-P" target="_blank" rel="noopener">
+          <h3>PID Line Follower</h3>
+          <p>Five-sensor ESP32 robot with calibration, Kalman filtering and PID control.</p>
+          <span class="meta">C++ · ESP32</span>
+        </a>
+        <a class="card" data-cat="hardware" href="https://github.com/arywk40-hue/Robotronics" target="_blank" rel="noopener">
+          <h3>Robotronics</h3>
+          <p>Dijkstra, A*, flood fill and DFS for robot pathfinding.</p>
+          <span class="meta">C++ · algorithms</span>
+        </a>
+      </div>
+
+      <div class="building">
+        <h3>Building now</h3>
+        <div class="building-row">
+          <a href="https://github.com/arywk40-hue/hft" target="_blank" rel="noopener"><b>HFT quant research</b></a>
+          <p>70 trading days, 691 masked features across 5 horizons; 543 survive Benjamini–Hochberg FDR. Next: holdout validation on days 86–108.</p>
+        </div>
+        <div class="building-row">
+          <a href="https://github.com/arywk40-hue/Rajasthani-llm" target="_blank" rel="noopener"><b>Rajasthani LLM</b></a>
+          <p>Speech and translation pipeline for six Rajasthani dialects, with verified WER and chrF++ metrics. Next: dialect data collection, then fine-tuning.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wins -->
+    <section class="section" id="wins" aria-labelledby="wins-title">
+      <div class="section-head">
+        <p class="kicker">Wins</p>
+        <h2 id="wins-title">Competitions</h2>
+      </div>
+      <ol class="wins">
+        <li><span class="place p1">1st</span><div><b>Aya Community Build &amp; Learn Week</b><p>Governance Budget Allocator, Rust on Soroban</p></div></li>
+        <li><span class="place p2">2nd</span><div><b>HackBio</b><p>2nd prize</p></div></li>
+        <li><span class="place p3">3rd</span><div><b>Weilliptic, Xpecto '26 (IIT Mandi)</b><p>2nd runner-up with LexAudit</p></div></li>
+        <li><span class="place p3">3rd</span><div><b>Space Code, STAC Club</b><p>3rd prize</p></div></li>
+        <li><span class="place">5th</span><div><b>Simplify AI Hackathon 2025</b><p>FeelEase, multilingual support chatbot</p></div></li>
+      </ol>
+      <p class="leader"><b>Leaderboards.</b> AIHack India (IIT Mandi SoM): rank 16, public score 0.768 on loan-default prediction. KRACKHACK: DINOv2 off-road segmentation, 40.5% mIoU on 6 classes and 24.3% on all 10.</p>
+    </section>
+
+    <!-- Open source -->
+    <section class="section" id="open-source" aria-labelledby="os-title">
+      <div class="section-head">
+        <p class="kicker">Open source &amp; community</p>
+        <h2 id="os-title">Contributing outside my own repos</h2>
+      </div>
+      <div class="os">
+        <article class="os-main">
+          <h3><a href="https://github.com/pybamm-team/PyBaMM" target="_blank" rel="noopener">PyBaMM</a></h3>
+          <p class="muted">NumFOCUS-sponsored, physics-based battery simulation in Python</p>
+          <ul>
+            <li>Pull request <a href="https://github.com/pybamm-team/PyBaMM/pull/6053" target="_blank" rel="noopener">#6053</a>: evaluate processed variables at custom-named spatial coordinates</li>
+            <li>Issues with reproductions: <a href="https://github.com/pybamm-team/PyBaMM/issues/6051" target="_blank" rel="noopener">#6051</a>, <a href="https://github.com/pybamm-team/PyBaMM/issues/6052" target="_blank" rel="noopener">#6052</a></li>
+            <li>Code reviews: <a href="https://github.com/pybamm-team/PyBaMM/pull/6044" target="_blank" rel="noopener">#6044</a>, <a href="https://github.com/pybamm-team/PyBaMM/pull/6020" target="_blank" rel="noopener">#6020</a>, <a href="https://github.com/pybamm-team/PyBaMM/pull/5979" target="_blank" rel="noopener">#5979</a>, <a href="https://github.com/pybamm-team/PyBaMM/pull/5981" target="_blank" rel="noopener">#5981</a></li>
+          </ul>
+        </article>
+        <ul class="os-list">
+          <li><b>Google Developer Groups, IIT Mandi</b><span>Blockchain core member</span></li>
+          <li><b>MLH Hacktoberfest 2026</b><span>Co-ran the campus session</span></li>
+          <li><b>PRAYAS 4.0</b><span>Class Coordinator, CCE &amp; B-States</span></li>
+          <li><b><a href="https://gssoc.girlscript.org/profile/139b1672-a7f0-49f5-b9db-fe88a0f15aab" target="_blank" rel="noopener">GirlScript Summer of Code</a></b><span>Contributor</span></li>
+          <li><b><a href="https://openprofile.dev/?lfajs_aid=29774113-4b53ca54-8e7d-4d8a-818a-3e2d9c6895d3" target="_blank" rel="noopener">Linux Foundation LFC102</a></b><span>Inclusive Open Source Community Orientation</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Toolbox -->
+    <section class="section" aria-labelledby="tools-title">
+      <div class="section-head">
+        <p class="kicker">Toolbox</p>
+        <h2 id="tools-title">What I reach for</h2>
+      </div>
+      <div class="tools">
+        <div><h3>Daily</h3><p>Python · C++ · PyTorch · scikit-learn · pandas · NumPy · LangChain · Streamlit · Git · Linux</p></div>
+        <div><h3>Build with</h3><p>Rust · Solidity · Stellar / Soroban · Ethereum · TensorFlow · TypeScript · FastAPI · Ollama · ESP32 · Arduino</p></div>
+        <div><h3>Exploring</h3><p>Solana · IPFS · zero-knowledge proofs · MCP tool design · LangGraph multi-agent flows</p></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">build → break → understand → rebuild</h2>
+      <p>Working on something in edge ML, agents, Web3 or quant research? I'd like to hear about it.</p>
+      <div class="cta center">
+        <a class="btn primary" href="mailto:ARYWK40@gmail.com">ARYWK40@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/ariyan-bhakat-730871315" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/arywk40-hue" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://x.com/DjBh71983363" target="_blank" rel="noopener">X</a>
+        <a class="btn" href="https://leetcode.com/u/arwk90/" target="_blank" rel="noopener">LeetCode</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>© 2026 Ariyan Bhakat · WEAVER</span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
